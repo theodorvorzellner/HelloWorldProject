@@ -11,7 +11,13 @@ public class Schleife {
 			System.out.println("Zahl: " + i);
 
 		}
-
+		//
+		int j = 0;
+		for (; j < 100;) {
+			System.out.println(j);
+			j = j+1;
+			
+		}
 	}
 
 }
