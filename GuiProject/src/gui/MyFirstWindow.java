@@ -9,21 +9,30 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.MouseMoveListener;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Text;
+
+import data.Person;
+
 import org.eclipse.swt.widgets.Label;
 
 public class MyFirstWindow {
 
 	protected Shell shlFrWindow;
-	private Text Vorname;
-	private Text Nachname;
+	private Text VornameTF;
+	private Text NachnameTF;
 	private Label lblPlz;
 	private Label lblOrt;
 	private Label lblStrae;
 	private Label lblHausnummer;
-	private Text Straﬂe;
-	private Text Hausnummer;
-	private Text Ort;
-	private Text PLZ;
+	private Text StraﬂeTF;
+	private Text HausnummerTF;
+	private Text OrtTF;
+	private Text PLZTF;
+	private Label vornameOut;
+	private Label nachnameOut;
+	private Label PLZOut;
+	private Label OrtOut;
+	private Label StraﬂeOut;
+	private Label HausnummerOut;
 
 	/**
 	 * Launch the application.
@@ -64,9 +73,9 @@ public class MyFirstWindow {
 		Button button1 = new Button(shlFrWindow, SWT.NONE);
 		button1.addMouseMoveListener(new MouseMoveListener() {
 			public void mouseMove(MouseEvent me) {
-				System.out.println("Maus ¸ber Knoppe bewegt");
-				//
-				System.out.println("Maus auf: " + me.x + " / " + me.y);
+	//			System.out.println("Maus ¸ber Knoppe bewegt");
+	//			//
+	//			System.out.println("Maus auf: " + me.x + " / " + me.y);
 				
 			}
 		});
@@ -75,20 +84,27 @@ public class MyFirstWindow {
 			public void widgetSelected(SelectionEvent e) {
 				System.out.println("Knoppe gedr¸ckt");
 				//
-				System.out.println(Vorname.getText());
-				System.out.println(Nachname.getText());
-				System.out.println(PLZ.getText());
-				System.out.println(Ort.getText());
-				System.out.println(Straﬂe.getText());
-				System.out.println(Hausnummer.getText());
-				
+				System.out.println(VornameTF.getText());
+				System.out.println(NachnameTF.getText());
+				System.out.println(PLZTF.getText());
+				System.out.println(OrtTF.getText());
+				System.out.println(StraﬂeTF.getText());
+				System.out.println(HausnummerTF.getText());
+				//
+				getVornameOut().setText(getVornameTF().getText());
+				getNachnameOut().setText(getNachnameTF().getText());
+				getPLZOut().setText(getPLZTF().getText());
+				getOrtOut().setText(getOrtTF().getText());
+				getStraﬂeOut().setText(getStraﬂeTF().getText());
+				getHausnummerOut().setText(getHausnummerTF().getText());
+
 			}
 		});
 		button1.setBounds(20, 10, 95, 39);
 		button1.setText("Mein 1. Knopf");
 		
-		Vorname = new Text(shlFrWindow, SWT.BORDER);
-		Vorname.setBounds(122, 67, 76, 21);
+		VornameTF = new Text(shlFrWindow, SWT.BORDER);
+		VornameTF.setBounds(122, 67, 95, 21);
 		
 		Label lblVorname = new Label(shlFrWindow, SWT.NONE);
 		lblVorname.setBounds(35, 70, 54, 15);
@@ -98,8 +114,8 @@ public class MyFirstWindow {
 		lblNachname.setBounds(35, 109, 78, 15);
 		lblNachname.setText("Nachname");
 		
-		Nachname = new Text(shlFrWindow, SWT.BORDER);
-		Nachname.setBounds(122, 106, 76, 21);
+		NachnameTF = new Text(shlFrWindow, SWT.BORDER);
+		NachnameTF.setBounds(122, 106, 95, 21);
 		
 		lblPlz = new Label(shlFrWindow, SWT.NONE);
 		lblPlz.setBounds(35, 130, 55, 15);
@@ -117,17 +133,94 @@ public class MyFirstWindow {
 		lblHausnummer.setBounds(35, 217, 80, 15);
 		lblHausnummer.setText("Hausnummer");
 		
-		Straﬂe = new Text(shlFrWindow, SWT.BORDER);
-		Straﬂe.setBounds(122, 184, 76, 21);
+		PLZTF = new Text(shlFrWindow, SWT.BORDER);
+		PLZTF.setBounds(122, 130, 95, 21);
 		
-		Hausnummer = new Text(shlFrWindow, SWT.BORDER);
-		Hausnummer.setBounds(122, 214, 76, 21);
+		OrtTF = new Text(shlFrWindow, SWT.BORDER);
+		OrtTF.setBounds(122, 160, 95, 21);
 		
-		Ort = new Text(shlFrWindow, SWT.BORDER);
-		Ort.setBounds(122, 160, 76, 21);
+		StraﬂeTF = new Text(shlFrWindow, SWT.BORDER);
+		StraﬂeTF.setBounds(122, 184, 95, 21);
 		
-		PLZ = new Text(shlFrWindow, SWT.BORDER);
-		PLZ.setBounds(122, 130, 76, 21);
+		HausnummerTF = new Text(shlFrWindow, SWT.BORDER);
+		HausnummerTF.setBounds(122, 214, 95, 21);
+		
+		vornameOut = new Label(shlFrWindow, SWT.NONE);
+		vornameOut.setBounds(241, 70, 66, 18);
+		
+		nachnameOut = new Label(shlFrWindow, SWT.NONE);
+		nachnameOut.setBounds(241, 109, 55, 21);
+		
+		PLZOut = new Label(shlFrWindow, SWT.NONE);
+		PLZOut.setBounds(241, 133, 55, 15);
+		
+		OrtOut = new Label(shlFrWindow, SWT.NONE);
+		OrtOut.setBounds(241, 166, 55, 15);
+		
+		StraﬂeOut = new Label(shlFrWindow, SWT.NONE);
+		StraﬂeOut.setBounds(241, 187, 122, 15);
+		
+		HausnummerOut = new Label(shlFrWindow, SWT.NONE);
+		HausnummerOut.setBounds(241, 217, 55, 15);
+		
+		Button btnSafeClean = new Button(shlFrWindow, SWT.NONE);
+		btnSafeClean.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				Person p; // Variablen-Definition
+				p = new Person(); // Variablen-Instanz
+				//
+				p.setVorname(getVornameTF().getText());
+				p.setNachname(getNachnameTF().getText());
+				p.setPLZ(getPLZTF().getText());
+				p.setOrt(getOrtTF().getText());
+				p.setStraﬂe(getStraﬂeTF().getText());
+				p.setHausnummer(getHausnummerTF().getText());
+				//
+				System.out.println(p);
+				
+				
+				
+			}
+		});
+		btnSafeClean.setBounds(158, 10, 95, 39);
+		btnSafeClean.setText("Safe & Clean");
 
+	}
+	public Label getVornameOut() {
+		return vornameOut;
+	}
+	public Label getNachnameOut() {
+		return nachnameOut;
+	}
+	public Label getPLZOut() {
+		return PLZOut;
+	}
+	public Label getOrtOut() {
+		return OrtOut;
+	}
+	public Label getStraﬂeOut() {
+		return StraﬂeOut;
+	}
+	public Label getHausnummerOut() {
+		return HausnummerOut;
+	}
+	public Text getVornameTF() {
+		return VornameTF;
+	}
+	public Text getNachnameTF() {
+		return NachnameTF;
+	}
+	public Text getPLZTF() {
+		return PLZTF;
+	}
+	public Text getOrtTF() {
+		return OrtTF;
+	}
+	public Text getStraﬂeTF() {
+		return StraﬂeTF;
+	}
+	public Text getHausnummerTF() {
+		return HausnummerTF;
 	}
 }
