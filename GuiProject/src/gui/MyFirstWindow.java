@@ -3,12 +3,19 @@ package gui;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
+
+import java.io.File;
+import java.io.FileWriter;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.MouseMoveListener;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Text;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import data.Person;
 
@@ -36,6 +43,7 @@ public class MyFirstWindow {
 
 	/**
 	 * Launch the application.
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -198,41 +206,78 @@ public class MyFirstWindow {
 		});
 		btnSafeClean.setBounds(158, 10, 95, 39);
 		btnSafeClean.setText("Safe & Clean");
+		
+		Button btnNewButton = new Button(shlFrWindow, SWT.NONE);
+		btnNewButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				Gson gson = new GsonBuilder().setPrettyPrinting().create();
+				gson.serializeNulls();
+				String jsonString = gson.toJson(Person.getPersonenListe());
+				System.out.println(jsonString);
+				//
+				// im explorer %TEMP%
+				//
+				try {
+				FileWriter fw = new FileWriter(File.createTempFile("wpfjson",".json"));
+				//
+						gson.toJson(Person.getPersonenListe(),fw);
+						//
+						fw.flush();
+						fw.close();
+				} catch (Exception ex) {
+			}
+			}
+		});
+		btnNewButton.setBounds(309, 10, 78, 39);
+		btnNewButton.setText("2Json");
 
 	}
+
 	public Label getVornameOut() {
 		return vornameOut;
 	}
+
 	public Label getNachnameOut() {
 		return nachnameOut;
 	}
+
 	public Label getPLZOut() {
 		return PLZOut;
 	}
+
 	public Label getOrtOut() {
 		return OrtOut;
 	}
+
 	public Label getStraﬂeOut() {
 		return StraﬂeOut;
 	}
+
 	public Label getHausnummerOut() {
 		return HausnummerOut;
 	}
+
 	public Text getVornameTF() {
 		return VornameTF;
 	}
+
 	public Text getNachnameTF() {
 		return NachnameTF;
 	}
+
 	public Text getPLZTF() {
 		return PLZTF;
 	}
+
 	public Text getOrtTF() {
 		return OrtTF;
 	}
+
 	public Text getStraﬂeTF() {
 		return StraﬂeTF;
 	}
+
 	public Text getHausnummerTF() {
 		return HausnummerTF;
 	}

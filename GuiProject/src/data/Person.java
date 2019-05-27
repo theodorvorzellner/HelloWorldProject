@@ -2,6 +2,8 @@ package data;
 
 import java.util.ArrayList;
 
+import com.google.gson.annotations.Expose;
+
 public class Person {
 	//
 	private static ArrayList<Person> personenListe = new ArrayList<>();
@@ -10,11 +12,17 @@ public class Person {
 	}
 
 	//
+	@Expose(serialize=true, deserialize=true)
 	private String Vorname;
+	@Expose(serialize=true, deserialize=true)
 	private String Nachname;
+	@Expose(serialize=true, deserialize=true)
 	private String PLZ;
+	@Expose(serialize=true, deserialize=true)
 	private String Ort;
+	@Expose(serialize=true, deserialize=true)
 	private String Straﬂe;
+	@Expose(serialize=true, deserialize=true)
 	private String Hausnummer;
 	public String getVorname() {
 		return Vorname;
