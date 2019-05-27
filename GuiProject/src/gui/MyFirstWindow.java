@@ -177,9 +177,22 @@ public class MyFirstWindow {
 				p.setStraﬂe(getStraﬂeTF().getText());
 				p.setHausnummer(getHausnummerTF().getText());
 				//
+				System.out.println("--------");
+				System.out.println("Objekt");
 				System.out.println(p);
-				
-				
+				//
+				Person.getPersonenListe().add(p);
+				System.out.println("--------");
+				System.out.println("Liste:");
+				System.out.println(Person.getPersonenListe());
+				//
+				// finally clean fields
+				getVornameTF().setText("");
+				getNachnameTF().setText("");
+				getPLZTF().setText("");
+				getOrtTF().setText("");
+				getStraﬂeTF().setText("");
+				getHausnummerTF().setText("");
 				
 			}
 		});

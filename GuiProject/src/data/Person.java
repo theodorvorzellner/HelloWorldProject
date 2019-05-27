@@ -1,6 +1,15 @@
 package data;
 
+import java.util.ArrayList;
+
 public class Person {
+	//
+	private static ArrayList<Person> personenListe = new ArrayList<>();
+	public static ArrayList<Person> getPersonenListe() {
+		return personenListe;
+	}
+
+	//
 	private String Vorname;
 	private String Nachname;
 	private String PLZ;
