@@ -79,14 +79,14 @@ public class MyFirstWindow {
 		shlFrWindow = new Shell();
 		shlFrWindow.setSize(450, 300);
 		shlFrWindow.setText("FR Window");
-		
+
 		Button button1 = new Button(shlFrWindow, SWT.NONE);
 		button1.addMouseMoveListener(new MouseMoveListener() {
 			public void mouseMove(MouseEvent me) {
-	//			System.out.println("Maus ¸ber Knoppe bewegt");
-	//			//
-	//			System.out.println("Maus auf: " + me.x + " / " + me.y);
-				
+				// System.out.println("Maus ¸ber Knoppe bewegt");
+				// //
+				// System.out.println("Maus auf: " + me.x + " / " + me.y);
+
 			}
 		});
 		button1.addSelectionListener(new SelectionAdapter() {
@@ -112,67 +112,67 @@ public class MyFirstWindow {
 		});
 		button1.setBounds(20, 10, 95, 39);
 		button1.setText("Mein 1. Knopf");
-		
+
 		VornameTF = new Text(shlFrWindow, SWT.BORDER);
 		VornameTF.setBounds(122, 67, 95, 21);
-		
+
 		Label lblVorname = new Label(shlFrWindow, SWT.NONE);
 		lblVorname.setBounds(35, 70, 54, 15);
 		lblVorname.setText("Vorname");
-		
+
 		Label lblNachname = new Label(shlFrWindow, SWT.NONE);
 		lblNachname.setBounds(35, 109, 78, 15);
 		lblNachname.setText("Nachname");
-		
+
 		NachnameTF = new Text(shlFrWindow, SWT.BORDER);
 		NachnameTF.setBounds(122, 106, 95, 21);
-		
+
 		lblPlz = new Label(shlFrWindow, SWT.NONE);
 		lblPlz.setBounds(35, 130, 55, 15);
 		lblPlz.setText("PLZ");
-		
+
 		lblOrt = new Label(shlFrWindow, SWT.NONE);
 		lblOrt.setBounds(35, 166, 55, 15);
 		lblOrt.setText("Ort");
-		
+
 		lblStrae = new Label(shlFrWindow, SWT.NONE);
 		lblStrae.setBounds(35, 187, 55, 15);
 		lblStrae.setText("Stra\u00DFe");
-		
+
 		lblHausnummer = new Label(shlFrWindow, SWT.NONE);
 		lblHausnummer.setBounds(35, 217, 80, 15);
 		lblHausnummer.setText("Hausnummer");
-		
+
 		PLZTF = new Text(shlFrWindow, SWT.BORDER);
 		PLZTF.setBounds(122, 130, 95, 21);
-		
+
 		OrtTF = new Text(shlFrWindow, SWT.BORDER);
 		OrtTF.setBounds(122, 160, 95, 21);
-		
+
 		StraﬂeTF = new Text(shlFrWindow, SWT.BORDER);
 		StraﬂeTF.setBounds(122, 184, 95, 21);
-		
+
 		HausnummerTF = new Text(shlFrWindow, SWT.BORDER);
 		HausnummerTF.setBounds(122, 214, 95, 21);
-		
+
 		vornameOut = new Label(shlFrWindow, SWT.NONE);
 		vornameOut.setBounds(241, 70, 66, 18);
-		
+
 		nachnameOut = new Label(shlFrWindow, SWT.NONE);
 		nachnameOut.setBounds(241, 109, 55, 21);
-		
+
 		PLZOut = new Label(shlFrWindow, SWT.NONE);
 		PLZOut.setBounds(241, 133, 55, 15);
-		
+
 		OrtOut = new Label(shlFrWindow, SWT.NONE);
 		OrtOut.setBounds(241, 166, 55, 15);
-		
+
 		StraﬂeOut = new Label(shlFrWindow, SWT.NONE);
 		StraﬂeOut.setBounds(241, 187, 122, 15);
-		
+
 		HausnummerOut = new Label(shlFrWindow, SWT.NONE);
 		HausnummerOut.setBounds(241, 217, 55, 15);
-		
+
 		Button btnSafeClean = new Button(shlFrWindow, SWT.NONE);
 		btnSafeClean.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -203,12 +203,12 @@ public class MyFirstWindow {
 				getOrtTF().setText("");
 				getStraﬂeTF().setText("");
 				getHausnummerTF().setText("");
-				
+
 			}
 		});
 		btnSafeClean.setBounds(158, 10, 95, 39);
 		btnSafeClean.setText("Safe & Clean");
-		
+
 		Button btn2Json = new Button(shlFrWindow, SWT.NONE);
 		btn2Json.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -219,31 +219,36 @@ public class MyFirstWindow {
 				System.out.println(jsonString);
 				//
 				// im explorer %TEMP%
-				//
+				FileDialog fd = new FileDialog(shlFrWindow, SWT.SAVE);
+				fd.setFilterPath(System.getProperty("java.io.tmpdir"));
+				fd.setFilterNames(new String[] { "WPF-INF-Json" });
+				fd.setFilterExtensions(new String[] { "*.json" });
+
+				String fileName = fd.open();
 				try {
-				FileWriter fw = new FileWriter(File.createTempFile("wpfjson",".json"));
-				//
-						gson.toJson(Person.getPersonenListe(),fw);
-						//
-						fw.flush();
-						fw.close();
+					FileWriter fw = new FileWriter(fileName);
+					//
+					gson.toJson(Person.getPersonenListe(), fw);
+					//
+					fw.flush();
+					fw.close();
 				} catch (Exception ex) {
-			}
+				}
 			}
 		});
 		btn2Json.setBounds(309, 10, 78, 39);
 		btn2Json.setText("2Json");
-		
+
 		Button btnFromJson = new Button(shlFrWindow, SWT.NONE);
 		btnFromJson.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				//
-				FileDialog fd = new FileDialog(shlFrWindow,SWT.OPEN);
+				FileDialog fd = new FileDialog(shlFrWindow, SWT.OPEN);
 				fd.setFilterPath(System.getProperty("java.io.tmpdir"));
 				//
-				fd.setFilterNames(new String [] {"WPF-INF-Json"});
-				fd.setFilterExtensions(new String[] {"*.json"});
+				fd.setFilterNames(new String[] { "WPF-INF-Json" });
+				fd.setFilterExtensions(new String[] { "*.json" });
 				//
 				String fileName = fd.open();
 				System.out.println(fileName);
