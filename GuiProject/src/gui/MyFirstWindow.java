@@ -1,6 +1,7 @@
 package gui;
 
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
 
@@ -10,6 +11,7 @@ import java.io.FileWriter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.internal.com.win32.FileDialogVtbl;
 import org.eclipse.swt.events.MouseMoveListener;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Text;
@@ -207,8 +209,8 @@ public class MyFirstWindow {
 		btnSafeClean.setBounds(158, 10, 95, 39);
 		btnSafeClean.setText("Safe & Clean");
 		
-		Button btnNewButton = new Button(shlFrWindow, SWT.NONE);
-		btnNewButton.addSelectionListener(new SelectionAdapter() {
+		Button btn2Json = new Button(shlFrWindow, SWT.NONE);
+		btn2Json.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -229,8 +231,31 @@ public class MyFirstWindow {
 			}
 			}
 		});
-		btnNewButton.setBounds(309, 10, 78, 39);
-		btnNewButton.setText("2Json");
+		btn2Json.setBounds(309, 10, 78, 39);
+		btn2Json.setText("2Json");
+		
+		Button btnFromJson = new Button(shlFrWindow, SWT.NONE);
+		btnFromJson.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				//
+				FileDialog fd = new FileDialog(shlFrWindow,SWT.OPEN);
+				fd.setFilterPath(System.getProperty("java.io.tmpdir"));
+				//
+				fd.setFilterNames(new String [] {"WPF-INF-Json"});
+				fd.setFilterExtensions(new String[] {"*.json"});
+				//
+				String fileName = fd.open();
+				System.out.println(fileName);
+				//
+				if (fileName != null) {
+					// fileName ausgewählt
+					Person.loadPersonenFromFile(fileName);
+				}
+			}
+		});
+		btnFromJson.setBounds(312, 70, 75, 39);
+		btnFromJson.setText("FromJson");
 
 	}
 
